@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isDark } from '/~/logics'
+import { isDark } from "/~/logics";
 </script>
 
 <template>
@@ -9,8 +9,8 @@ import { isDark } from '/~/logics'
       to="/"
       focusable="false"
     >
-      <img v-show="isDark" src="/logo-dark.svg" alt="logo">
-      <img v-show="!isDark" src="/favicon.ico" alt="logo">
+      <img v-show="isDark" src="/travel.jpg" alt="logo" />
+      <img v-show="!isDark" src="/favicon.ico" alt="logo" />
     </router-link>
     <nav class="nav">
       <div class="spacer" />
@@ -26,12 +26,12 @@ import { isDark } from '/~/logics'
         <router-link to="/bookmarks" title="Bookmarks" class="lt-md:hidden">
           <ri-bookmark-line />
         </router-link>
-        <a href="https://github.com/limeiwang" target="_blank" title="GitHub">
+        <a href="https://github.com/ihoneys" target="_blank" title="GitHub">
           <uil-github-alt />
         </a>
         <!-- <a href="/feed.xml" target="_blank" title="RSS" class="lt-md:hidden">
           <la-rss-square style="font-size:1.25rem; margin: 0 -0.125rem;" />
-        </a> -->
+        </a>-->
         <toggle-theme />
       </div>
     </nav>

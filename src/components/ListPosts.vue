@@ -1,19 +1,29 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
-import { formatDate } from '/~/logics'
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+import { formatDate } from "/~/logics";
 
 const props = defineProps<{
-  type?: string
-}>()
+  type?: string;
+}>();
 
-const router = useRouter()
-const routes = router.getRoutes()
-  .filter(i => i.path.startsWith('/posts') && i.meta.frontmatter.date)
-  .sort((a, b) => +new Date(b.meta.frontmatter.date) - +new Date(a.meta.frontmatter.date))
+const router = useRouter();
+console.log(router.getRoutes());
+
+const routes = router
+  .getRoutes()
+  .filter((i) => i.path.startsWith("/posts") && i.meta.frontmatter.date)
+  .sort(
+    (a, b) =>
+      +new Date(b.meta.frontmatter.date) - +new Date(a.meta.frontmatter.date)
+  );
 
 const posts = computed(() =>
-  routes.filter(i => !i.path.endsWith('.html') && i.meta.frontmatter.type === props.type),
-)
+  routes.filter(
+    (i) => !i.path.endsWith(".html") && i.meta.frontmatter.type === props.type
+  )
+);
+console.log(posts.value);
 </script>
 
 <template>
@@ -33,7 +43,11 @@ const posts = computed(() =>
           >中文</sup>
         </div>
         <div class="time opacity-50 text-sm -mt-1">
-          {{ formatDate(route.meta.frontmatter.date) }} <span v-if="route.meta.frontmatter.duration" class="opacity-50">· {{ route.meta.frontmatter.duration }}</span>
+          {{ formatDate(route.meta.frontmatter.date) }}
+          <span
+            v-if="route.meta.frontmatter.duration"
+            class="opacity-50"
+          >· {{ route.meta.frontmatter.duration }}</span>
         </div>
       </li>
     </router-link>
